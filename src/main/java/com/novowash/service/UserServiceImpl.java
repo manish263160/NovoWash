@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.stereotype.Service;
 
-import com.novowash.pojo.User;
+import com.novowash.model.User;
 
 @Service("userService")
 public class UserServiceImpl implements UserService{
@@ -79,7 +79,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public com.novowash.pojo.User userLogin(String userName, String password) {
+	public com.novowash.model.User userLogin(String userName, String password) {
 		// TODO Auto-generated method stub
 		return null;
 	}

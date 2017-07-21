@@ -2,7 +2,7 @@ package com.novowash.model;
 
 public class User {
 
-	private long id;
+	private long userId;
 	
 	private String username;
 	
@@ -10,24 +10,27 @@ public class User {
 	
 	private String email;
 	
+	private int status;
+	
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
 	public User(){
-		id=0;
+		userId=0;
 	}
 	
-	public User(long id, String username, String address, String email){
-		this.id = id;
+	public User(long userId, String username, String address, String email){
+		this.userId = userId;
 		this.username = username;
 		this.address = address;
 		this.email = email;
 	}
 
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
 
 	public String getUsername() {
 		return username;
@@ -53,11 +56,19 @@ public class User {
 		this.email = email;
 	}
 
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + (int) (userId ^ (userId >>> 32));
 		return result;
 	}
 
@@ -70,14 +81,14 @@ public class User {
 		if (!(obj instanceof User))
 			return false;
 		User other = (User) obj;
-		if (id != other.id)
+		if (userId != other.userId)
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", address=" + address
+		return "User [id=" + userId + ", username=" + username + ", address=" + address
 				+ ", email=" + email + "]";
 	}
 	

@@ -24,7 +24,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
-import com.novowash.pojo.User;
+import com.novowash.model.User;
 import com.novowash.service.UserService;
 import com.novowash.utils.GenUtilitis;
 

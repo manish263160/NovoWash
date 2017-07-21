@@ -1,4 +1,4 @@
-package com.novowash.pojo;
+package com.novowash.model;
 
 import java.io.Serializable;
 
