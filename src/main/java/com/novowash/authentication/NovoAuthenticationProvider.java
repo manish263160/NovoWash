@@ -17,7 +17,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import com.novowash.Enums.STATUS;
-import com.novowash.pojo.User;
+import com.novowash.model.User;
 import com.novowash.service.UserService;
 
 

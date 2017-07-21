@@ -42,8 +42,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.novowash.Enums.RESPONSE_CODES;
 import com.novowash.exception.GenericException;
-import com.novowash.pojo.ResponseObject;
-import com.novowash.pojo.User;
+import com.novowash.model.ResponseObject;
+import com.novowash.model.User;
 
 public class GenUtilitis {
 	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";

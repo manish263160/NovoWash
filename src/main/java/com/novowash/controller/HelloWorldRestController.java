@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.novowash.pojo.User;
+import com.novowash.model.User;
 import com.novowash.service.UserService;
  
 @RestController

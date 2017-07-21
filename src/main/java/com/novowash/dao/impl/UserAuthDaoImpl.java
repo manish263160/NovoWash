@@ -21,11 +21,11 @@ public class UserAuthDaoImpl  extends NovoJdbcTemplate implements UserAuthDao{
 
 private static final Logger logger = Logger.getLogger(UserAuthDaoImpl.class);
 	
-	private static final String CREATE_USER_AUTH = "insert into user_auth(user_id,user_name,auth_token,device_id,expiry_in_mills,status,created_on) values(?,?,?,?,?,?, now())";
+	private static final String CREATE_USER_AUTH = "insert into user_auth(user_id,user_name,auth_token,device_id,expiry_in_mills,status,created_on, created_by) values(?,?,?,?,?,?, now(),?)";
 	
 	private static final String VALIDATE_AUTH_SQL ="select count(*) from t_user_auth "
 //			+" where    created_on+((1*(expiryinmills/1000))/86400) >= ? and authtoken = ? and device_id = ? and status = ? and client_id = ?";
-            +" where  DATE_ADD(created_on, INTERVAL (expiryinmills/1000) second)>= ? and user_name and authtoken = ? and device_id = ? and status = ?";
+            +" where  DATE_ADD(created_on, INTERVAL (expiryinmills/1000) second)>= ? and user_name = ? and authtoken = ? and device_id = ? and status = ?";
 	
 	private static final String UPDATE_STATUS_SQL = "update user_auth set status = now(), modified_on = ? where user_name = ? and device_id = ? and status = ? ";
 	
@@ -39,12 +39,14 @@ private static final Logger logger = Logger.getLogger(UserAuthDaoImpl.class);
 			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
 				PreparedStatement pstmt = connection.prepareStatement(CREATE_USER_AUTH);
 				int index = 1;
+				
 				pstmt.setLong(index++, userAuth.getUserId());
 				pstmt.setString(index++, userAuth.getUserName());
 				pstmt.setString(index++, userAuth.getAuthToken());
 				pstmt.setString(index++, userAuth.getDeviceId());
 				pstmt.setLong(index++, userAuth.getExpiryInMills());
 				pstmt.setInt(index++, STATUS.ACTIVE.ID);
+				pstmt.setString(index++, userAuth.getUserName());
 				
 				return pstmt;
 			}
@@ -72,7 +74,7 @@ private static final Logger logger = Logger.getLogger(UserAuthDaoImpl.class);
 	@Override
 	public boolean validateUserAuth(String authToken, String deviceId, String userName) {
 		int result = 0;
-		result = getJdbcTemplate().queryForObject(VALIDATE_AUTH_SQL, Integer.class,authToken, deviceId, STATUS.ACTIVE.ID, userName);
+		result = getJdbcTemplate().queryForObject(VALIDATE_AUTH_SQL, Integer.class, new Object[] { userName, authToken, deviceId, STATUS.ACTIVE.ID });
 		return result > 0 ? true : false;
 	}
 	
