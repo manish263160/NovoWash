@@ -23,7 +23,8 @@ Testimonial Carousel With Thumbnail Common Style
 Circle Thumbnail Carousel
 -------------------------------------------------------------*/
 .circle-thumb .flex-control-thumbs li {
-    width: 72px;
+    width: 114px;
+    height: 110px;
     float: none;
     margin: 0 15px;
 }
@@ -57,7 +58,8 @@ Square Thumbnail Carousel
     font-weight: 400;
 }
 .square-thumb .flex-control-thumbs li {
-    width: 70px;
+    width: 126px;
+    height: 120px;
     float: none;
     margin: 0 2px;
 }
