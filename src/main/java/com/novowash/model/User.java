@@ -1,16 +1,14 @@
 package com.novowash.model;
 
-public class User {
+public class User extends BaseDto {
 
-	private long userId;
-	
-	private String username;
-	
+	private long id;
+	private String name; 
 	private String address;
-	
 	private String email;
-	
+	private String mobileNo;
 	private int status;
+	private String token;
 	
 	public int getStatus() {
 		return status;
@@ -21,23 +19,56 @@ public class User {
 	}
 
 	public User(){
-		userId=0;
+		
 	}
-	
-	public User(long userId, String username, String address, String email){
-		this.userId = userId;
-		this.username = username;
+
+	public User(long id, String username, String address, String email){
+		this.id = id;
+		this.name = username;
 		this.address = address;
 		this.email = email;
 	}
 
-
-	public String getUsername() {
-		return username;
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * @return the mobileNo
+	 */
+	public String getMobileNo() {
+		return mobileNo;
+	}
+
+	/**
+	 * @param mobileNo the mobileNo to set
+	 */
+	public void setMobileNo(String mobileNo) {
+		this.mobileNo = mobileNo;
 	}
 
 	public String getAddress() {
@@ -56,19 +87,25 @@ public class User {
 		this.email = email;
 	}
 
-	public long getUserId() {
-		return userId;
+	/**
+	 * @return the token
+	 */
+	public String getToken() {
+		return token;
 	}
 
-	public void setUserId(long userId) {
-		this.userId = userId;
+	/**
+	 * @param token the token to set
+	 */
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (userId ^ (userId >>> 32));
+		result = prime * result + (int) (id ^ (id >>> 32));
 		return result;
 	}
 
@@ -81,17 +118,15 @@ public class User {
 		if (!(obj instanceof User))
 			return false;
 		User other = (User) obj;
-		if (userId != other.userId)
+		if (id != other.id)
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + userId + ", username=" + username + ", address=" + address
+		return "User [id=" + id + ", username=" + name + ", address=" + address
 				+ ", email=" + email + "]";
 	}
-	
-
 	
 }

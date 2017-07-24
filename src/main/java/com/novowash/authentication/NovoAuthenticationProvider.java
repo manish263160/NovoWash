@@ -48,7 +48,7 @@ public class NovoAuthenticationProvider implements AuthenticationProvider {
 			String userName = authentication.getPrincipal().toString();
 			String password = authentication.getCredentials().toString();
 			
-			User user = userService.userLogin(userName, password);
+			User user = userService.userLogin(userName, password,"web");
 
 			if (user == null) {
 				throw new UsernameNotFoundException(String.format(URLEncoder.encode("Invalid Email OR password", "UTF-8"), authentication.getPrincipal()));
@@ -63,7 +63,7 @@ public class NovoAuthenticationProvider implements AuthenticationProvider {
 			}
 			List<String> roles=null;
 			if(user != null){
-			 roles= userService.getUserRoles(user.getUserId());
+			 roles= userService.getUserRoles(user.getId());
 			}
 			List<GrantedAuthority> grantList= new ArrayList<GrantedAuthority>();
 	        if(roles!= null)  {

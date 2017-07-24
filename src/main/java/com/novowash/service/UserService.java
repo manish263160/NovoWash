@@ -24,7 +24,7 @@ public interface UserService {
 	
 	public boolean isUserExist(User user);
 
-	com.novowash.model.User userLogin(String userName, String password);
+	User userLogin(String userName, String password, String deviceId);
 
 	List<String> getUserRoles(Long userId);
 	

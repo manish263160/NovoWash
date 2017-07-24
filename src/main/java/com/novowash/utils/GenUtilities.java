@@ -45,10 +45,10 @@ import com.novowash.exception.GenericException;
 import com.novowash.model.ResponseObject;
 import com.novowash.model.User;
 
-public class GenUtilitis {
+public class GenUtilities {
 	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 	private static final String AMOUNT_PATTERN = "^((\\d+)|(\\d+\\.\\d{1,2}))$";
-	private static final Logger logger = Logger.getLogger(GenUtilitis.class);
+	private static final Logger logger = Logger.getLogger(GenUtilities.class);
 	private static Cipher cipher;
 	private static SecretKey secretKey;
 

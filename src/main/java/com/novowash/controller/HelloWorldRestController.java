@@ -56,17 +56,14 @@ public class HelloWorldRestController {
      
     @RequestMapping(value = "/user/", method = RequestMethod.POST)
     public ResponseEntity<Void> createUser(@RequestBody User user,    UriComponentsBuilder ucBuilder) {
-        System.out.println("Creating User " + user.getUsername());
  
         if (userService.isUserExist(user)) {
-            System.out.println("A User with name " + user.getUsername() + " already exist");
             return new ResponseEntity<Void>(HttpStatus.CONFLICT);
         }
  
         userService.saveUser(user);
  
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/user/{id}").buildAndExpand(user.getUserId()).toUri());
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
  
@@ -85,7 +82,6 @@ public class HelloWorldRestController {
             return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
         }
  
-        currentUser.setUsername(user.getUsername());
         currentUser.setAddress(user.getAddress());
         currentUser.setEmail(user.getEmail());
          
