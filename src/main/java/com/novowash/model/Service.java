@@ -1,5 +1,9 @@
 package com.novowash.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 /**
  * 
  * @author mukeshks
@@ -10,12 +14,11 @@ public class Service extends BaseDto {
 	private long id;
 	private String serviceName;
 	private String serviceDesc;
-	private String imgUrl;
+	private String imgageUrl;
 	private int serviceCat; //(1-Home, 0-office) 
 	private int serviceType; //(Enquire-1, Book-0)
 	private int status;
-	
-	private ServiceCost serviceCost;
+	private List<ServiceCost> serviceCosts;
 	
 	/**
 	 * @return the status
@@ -65,17 +68,18 @@ public class Service extends BaseDto {
 	public void setServiceDesc(String serviceDesc) {
 		this.serviceDesc = serviceDesc;
 	}
+	
 	/**
-	 * @return the imgUrl
+	 * @return the imgageUrl
 	 */
-	public String getImgUrl() {
-		return imgUrl;
+	public String getImgageUrl() {
+		return imgageUrl;
 	}
 	/**
-	 * @param imgUrl the imgUrl to set
+	 * @param imgageUrl the imgageUrl to set
 	 */
-	public void setImgUrl(String imgUrl) {
-		this.imgUrl = imgUrl;
+	public void setImgageUrl(String imgageUrl) {
+		this.imgageUrl = imgageUrl;
 	}
 	/**
 	 * @return the serviceCat
@@ -102,16 +106,19 @@ public class Service extends BaseDto {
 		this.serviceType = serviceType;
 	}
 	/**
-	 * @return the serviceCost
+	 * @return the serviceCosts
 	 */
-	public ServiceCost getServiceCost() {
-		return serviceCost;
+	public List<ServiceCost> getServiceCosts() {
+		if (serviceCosts == null) {
+			serviceCosts = new ArrayList<ServiceCost>();
+		}
+		return serviceCosts;
 	}
 	/**
-	 * @param serviceCost the serviceCost to set
+	 * @param serviceCosts the serviceCosts to set
 	 */
-	public void setServiceCost(ServiceCost serviceCost) {
-		this.serviceCost = serviceCost;
+	public void setServiceCosts(List<ServiceCost> serviceCosts) {
+		this.serviceCosts = serviceCosts;
 	}
 	
 }

@@ -33,7 +33,7 @@ import com.novowash.utils.ApplicationConstants;
  *
  */
 
-@WebFilter
+//@WebFilter
 public class UserAuthFilter implements Filter {
 	
 	private static Logger logger = Logger.getLogger(UserAuthFilter.class);
