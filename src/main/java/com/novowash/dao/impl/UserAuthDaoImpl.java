@@ -11,7 +11,8 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import com.novowash.Enums.STATUS;
+import com.novowash.Enums.CommonEnums;
+import com.novowash.Enums.CommonEnums.STATUS;
 import com.novowash.dao.UserAuthDao;
 import com.novowash.jdbcTemplate.NovoJdbcTemplate;
 import com.novowash.model.UserAuth;
@@ -61,10 +62,10 @@ private static final Logger logger = Logger.getLogger(UserAuthDaoImpl.class);
 			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
 				PreparedStatement pstmt = connection.prepareStatement(UPDATE_STATUS_SQL);
 				int index = 1;
-				pstmt.setInt(index++, STATUS.INACTIVE.ID);
+				pstmt.setInt(index++, CommonEnums.STATUS.INACTIVE.ID);
 				pstmt.setLong(index++, userId);
 				pstmt.setString(index++, deviceId);
-				pstmt.setLong(index++, STATUS.ACTIVE.ID);
+				pstmt.setLong(index++, CommonEnums.STATUS.ACTIVE.ID);
 				return pstmt;
 			}
 		});
@@ -74,7 +75,7 @@ private static final Logger logger = Logger.getLogger(UserAuthDaoImpl.class);
 	@Override
 	public boolean validateUserAuth(String authToken, String deviceId, String userName) {
 		int result = 0;
-		result = getJdbcTemplate().queryForObject(VALIDATE_AUTH_SQL, Integer.class, new Object[] { userName, authToken, deviceId, STATUS.ACTIVE.ID });
+		result = getJdbcTemplate().queryForObject(VALIDATE_AUTH_SQL, Integer.class, new Object[] { userName, authToken, deviceId, CommonEnums.STATUS.ACTIVE.ID });
 		return result > 0 ? true : false;
 	}
 	

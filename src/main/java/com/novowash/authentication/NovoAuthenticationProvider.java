@@ -16,7 +16,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import com.novowash.Enums.STATUS;
+import com.novowash.Enums.CommonEnums;
 import com.novowash.model.User;
 import com.novowash.service.UserService;
 
@@ -54,11 +54,11 @@ public class NovoAuthenticationProvider implements AuthenticationProvider {
 				throw new UsernameNotFoundException(String.format(URLEncoder.encode("Invalid Email OR password", "UTF-8"), authentication.getPrincipal()));
 			}
 			
-			if (STATUS.INACTIVE.ID == user.getStatus()) {
+			if (CommonEnums.STATUS.INACTIVE.ID == user.getStatus()) {
 				throw new UsernameNotFoundException(String.format(URLEncoder.encode("You are not active", "UTF-8"), authentication.getPrincipal()));
 			}
 			
-			if (STATUS.BLOCK.ID == user.getStatus()) {
+			if (CommonEnums.STATUS.BLOCK.ID == user.getStatus()) {
 				throw new UsernameNotFoundException(String.format(URLEncoder.encode("You are blocked. Please contact admin", "UTF-8"), authentication.getPrincipal()));
 			}
 			List<String> roles=null;
