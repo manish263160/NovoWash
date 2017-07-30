@@ -2,12 +2,10 @@ package com.novowash.service;
 
 import java.util.List;
 
-import com.novowash.pojo.User;
-
-
-
-
-
+import com.novowash.model.User;
+/*
+ * 
+ */
 public interface UserService {
 	
 	User findById(long id);
@@ -26,7 +24,7 @@ public interface UserService {
 	
 	public boolean isUserExist(User user);
 
-	com.novowash.pojo.User userLogin(String userName, String password);
+	User userLogin(String userName, String password, String deviceId);
 
 	List<String> getUserRoles(Long userId);
 	

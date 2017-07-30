@@ -1,40 +1,74 @@
 package com.novowash.model;
 
-public class User {
+public class User extends BaseDto {
 
 	private long id;
-	
-	private String username;
-	
+	private String name; 
 	private String address;
-	
 	private String email;
+	private String mobileNo;
+	private int status;
+	private String token;
 	
-	public User(){
-		id=0;
+	public int getStatus() {
+		return status;
 	}
-	
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public User(){
+		
+	}
+
 	public User(long id, String username, String address, String email){
 		this.id = id;
-		this.username = username;
+		this.name = username;
 		this.address = address;
 		this.email = email;
 	}
 
+	/**
+	 * @return the id
+	 */
 	public long getId() {
 		return id;
 	}
 
+	/**
+	 * @param id the id to set
+	 */
 	public void setId(long id) {
 		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * @return the mobileNo
+	 */
+	public String getMobileNo() {
+		return mobileNo;
+	}
+
+	/**
+	 * @param mobileNo the mobileNo to set
+	 */
+	public void setMobileNo(String mobileNo) {
+		this.mobileNo = mobileNo;
 	}
 
 	public String getAddress() {
@@ -51,6 +85,20 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	/**
+	 * @return the token
+	 */
+	public String getToken() {
+		return token;
+	}
+
+	/**
+	 * @param token the token to set
+	 */
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 	@Override
@@ -77,10 +125,8 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", address=" + address
+		return "User [id=" + id + ", username=" + name + ", address=" + address
 				+ ", email=" + email + "]";
 	}
-	
-
 	
 }

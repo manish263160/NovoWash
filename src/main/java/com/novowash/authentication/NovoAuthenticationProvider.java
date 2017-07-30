@@ -16,8 +16,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import com.novowash.Enums.STATUS;
-import com.novowash.pojo.User;
+import com.novowash.Enums.CommonEnums;
+import com.novowash.model.User;
 import com.novowash.service.UserService;
 
 
@@ -48,22 +48,22 @@ public class NovoAuthenticationProvider implements AuthenticationProvider {
 			String userName = authentication.getPrincipal().toString();
 			String password = authentication.getCredentials().toString();
 			
-			User user = userService.userLogin(userName, password);
+			User user = userService.userLogin(userName, password,"web");
 
 			if (user == null) {
 				throw new UsernameNotFoundException(String.format(URLEncoder.encode("Invalid Email OR password", "UTF-8"), authentication.getPrincipal()));
 			}
 			
-			if (STATUS.INACTIVE.ID == user.getStatus()) {
+			if (CommonEnums.STATUS.INACTIVE.ID == user.getStatus()) {
 				throw new UsernameNotFoundException(String.format(URLEncoder.encode("You are not active", "UTF-8"), authentication.getPrincipal()));
 			}
 			
-			if (STATUS.BLOCK.ID == user.getStatus()) {
+			if (CommonEnums.STATUS.BLOCK.ID == user.getStatus()) {
 				throw new UsernameNotFoundException(String.format(URLEncoder.encode("You are blocked. Please contact admin", "UTF-8"), authentication.getPrincipal()));
 			}
 			List<String> roles=null;
 			if(user != null){
-			 roles= userService.getUserRoles(user.getUserId());
+			 roles= userService.getUserRoles(user.getId());
 			}
 			List<GrantedAuthority> grantList= new ArrayList<GrantedAuthority>();
 	        if(roles!= null)  {
