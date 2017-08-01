@@ -19,13 +19,16 @@ import com.novowash.Enums.CommonEnums.STATUS;
 import com.novowash.dao.UserServicesDao;
 import com.novowash.jdbcTemplate.NovoJdbcTemplate;
 import com.novowash.model.Service;
+import com.novowash.model.ServiceCategory;
 import com.novowash.model.ServiceCost;
 import com.novowash.model.ServiceEnquire;
 
 @Repository
 public class UserServicesDaoImpl extends NovoJdbcTemplate implements UserServicesDao {
 
-	private static final Logger logger = Logger.getLogger(UserAuthDaoImpl.class);
+	private static final Logger logger = Logger.getLogger(UserServicesDaoImpl.class);
+	
+	private static final String GET_ALL_SERVICE_CAT = "select * from service_cat_m where status = ?";
 
 	private static final String GET_ALL_SERVICES = "select * from service_m where status = ?";
 
@@ -33,6 +36,17 @@ public class UserServicesDaoImpl extends NovoJdbcTemplate implements UserService
 
 	private static final String BOOK_SERVICE_SQL = "insert into service_enquire(service_id,service_cost_id,service_date,house,landmark,locality,name,phone,email,status,created_on,created_by) "
 			+ "						values(?,?,?,?,?,?,?,?,?,?,now(),?)";
+	
+	@Override
+	public List<ServiceCategory> getAllServiceCategories() {
+		return getJdbcTemplate().query(GET_ALL_SERVICE_CAT, new BeanPropertyRowMapper<ServiceCategory>(ServiceCategory.class), STATUS.ACTIVE.ID);
+	}
+	
+	@Override
+	public List<Service> getAllServicesByCatId(long categoryId) {
+		String sql = GET_ALL_SERVICES + " and service_cat_id = ?";
+		return getJdbcTemplate().query(sql, new BeanPropertyRowMapper<Service>(Service.class), STATUS.ACTIVE.ID, categoryId);
+	}
 
 	@Override
 	public List<Service> getAllServices() {

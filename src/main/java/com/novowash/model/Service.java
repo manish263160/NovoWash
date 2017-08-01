@@ -12,10 +12,11 @@ import java.util.List;
 public class Service extends BaseDto {
 	
 	private long id;
+	private long serviceCatId;
 	private String serviceName;
 	private String serviceDesc;
 	private String imgageUrl;
-	private int serviceCat; //(1-Home, 0-office) 
+	//private int serviceCat; //(1-Home, 0-office) 
 	private int serviceType; //(Enquire-1, Book-0)
 	private int status;
 	private List<ServiceCost> serviceCosts;
@@ -82,18 +83,6 @@ public class Service extends BaseDto {
 		this.imgageUrl = imgageUrl;
 	}
 	/**
-	 * @return the serviceCat
-	 */
-	public int getServiceCat() {
-		return serviceCat;
-	}
-	/**
-	 * @param serviceCat the serviceCat to set
-	 */
-	public void setServiceCat(int serviceCat) {
-		this.serviceCat = serviceCat;
-	}
-	/**
 	 * @return the serviceType
 	 */
 	public int getServiceType() {
@@ -119,6 +108,18 @@ public class Service extends BaseDto {
 	 */
 	public void setServiceCosts(List<ServiceCost> serviceCosts) {
 		this.serviceCosts = serviceCosts;
+	}
+	/**
+	 * @return the serviceCatId
+	 */
+	public long getServiceCatId() {
+		return serviceCatId;
+	}
+	/**
+	 * @param serviceCatId the serviceCatId to set
+	 */
+	public void setServiceCatId(long serviceCatId) {
+		this.serviceCatId = serviceCatId;
 	}
 	
 }
