@@ -17,6 +17,10 @@ public class UserServices {
 	@Autowired
 	private UserServicesDao servicesDao;
 	
+	public List<ServiceCategory> getAllServicesDetails() {
+		return servicesDao.getAllServicesDetails();
+	}
+	
 	public List<ServiceCategory> getAllServiceCategories() {
 		return servicesDao.getAllServiceCategories();
 	}

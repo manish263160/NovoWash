@@ -20,6 +20,12 @@ public class UserServiceController {
 	@Autowired
 	private UserServices services;
 	
+	@RequestMapping(method = RequestMethod.POST, value = "/all")
+	public ResponseObject getAllServicesDetails() {
+		return GenUtilities.getSuccessResponseObject(services.getAllServicesDetails(), RESPONSE_CODES.SUCCESS.getDescription(),
+				RESPONSE_CODES.SUCCESS.getCode());
+	}
+	
 	@RequestMapping(method = RequestMethod.POST, value = "/get/category")
 	public ResponseObject getAllServiceCategories() {
 		return GenUtilities.getSuccessResponseObject(services.getAllServiceCategories(), RESPONSE_CODES.SUCCESS.getDescription(),

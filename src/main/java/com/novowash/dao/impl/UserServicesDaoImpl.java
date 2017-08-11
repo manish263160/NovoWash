@@ -2,14 +2,22 @@ package com.novowash.dao.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.sql.Types;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
+import org.omg.PortableInterceptor.ACTIVE;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
@@ -36,6 +44,19 @@ public class UserServicesDaoImpl extends NovoJdbcTemplate implements UserService
 
 	private static final String BOOK_SERVICE_SQL = "insert into service_enquire(service_id,service_cost_id,service_date,house,landmark,locality,name,phone,email,status,created_on,created_by) "
 			+ "						values(?,?,?,?,?,?,?,?,?,?,now(),?)";
+	
+	private static final String ALL_SERVICES = "select scm.id ,scm.cat_name,scm.cat_desc,scm.image_url cat_image_url, " +
+			" sm.id as ser_id ,sm.service_cat_id,sm.service_name, sm.service_desc,sm.service_type,sm.image_url service_image_url, " +
+			" sc.id as service_cost_id, sc.service_id, sc.cost_details, sc.price  " +
+			" from service_cat_m scm " +
+			" left join  service_m sm on sm.service_cat_id = scm.id and sm.status = " + STATUS.ACTIVE.ID +
+			" left join service_cost sc on sc.service_id = sm.id and sc.status = " + STATUS.ACTIVE.ID +
+			" where scm.status = " + STATUS.ACTIVE.ID;
+	
+	@Override
+	public List<ServiceCategory> getAllServicesDetails() {
+		return getJdbcTemplate().query(ALL_SERVICES, new ServiceRowMapper());
+	}
 	
 	@Override
 	public List<ServiceCategory> getAllServiceCategories() {
@@ -91,5 +112,24 @@ public class UserServicesDaoImpl extends NovoJdbcTemplate implements UserService
 		}, keyHolder);
 		enquire.setId(keyHolder.getKey().longValue());
 	}
-
 }
+ class ServiceRowMapper implements ResultSetExtractor<List<ServiceCategory>> {
+	
+	@Override
+	public List<ServiceCategory> extractData(ResultSet rs) throws SQLException, DataAccessException {
+		Map<Long, ServiceCategory> categoryMap = new HashMap<Long, ServiceCategory>();
+		Map<Long, Service> serviceMap = new HashMap<Long, Service>();
+		List<ServiceCategory> categories = new ArrayList<ServiceCategory>();
+		while(rs.next()) {
+			ServiceCategory  category = new ServiceCategory();
+			category.setId(rs.getLong("id"));
+			category.setCatName(rs.getString("cat_name"));
+			category.setCatDesc(rs.getString("cat_desc"));
+			category.setImgageUrl(rs.getString("cat_image_url"));
+			category.setStatus(STATUS.ACTIVE.ID);
+			categoryMap.put(rs.getLong("id"), category);
+		}
+		categories.addAll(categoryMap.values().stream().collect(Collectors.toList()));
+		return categories;
+	}
+ }

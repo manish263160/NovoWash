@@ -9,6 +9,8 @@ import com.novowash.model.ServiceEnquire;
 
 public interface UserServicesDao {
 	
+	public List<ServiceCategory> getAllServicesDetails();
+	
 	public List<ServiceCategory> getAllServiceCategories();
 	
 	public List<Service> getAllServicesByCatId(long categoryId);
