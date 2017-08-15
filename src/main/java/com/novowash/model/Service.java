@@ -19,6 +19,7 @@ public class Service extends BaseDto {
 	//private int serviceCat; //(1-Home, 0-office) 
 	private int serviceType; //(Enquire-1, Book-0)
 	private int status;
+	private int serviceFor;  //(1- indevisual , 2- company)
 	private List<ServiceCost> serviceCosts;
 	
 	/**
@@ -120,6 +121,12 @@ public class Service extends BaseDto {
 	 */
 	public void setServiceCatId(long serviceCatId) {
 		this.serviceCatId = serviceCatId;
+	}
+	public int getServiceFor() {
+		return serviceFor;
+	}
+	public void setServiceFor(int serviceFor) {
+		this.serviceFor = serviceFor;
 	}
 	
 }
