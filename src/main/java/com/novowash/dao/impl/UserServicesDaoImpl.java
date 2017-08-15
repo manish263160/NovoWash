@@ -111,6 +111,12 @@ public class UserServicesDaoImpl extends NovoJdbcTemplate implements UserService
 		}, keyHolder);
 		enquire.setId(keyHolder.getKey().longValue());
 	}
+
+	@Override
+	public Service getServiceById(long id) {
+		String sql = GET_ALL_SERVICES + " and id = ?";
+		return getJdbcTemplate().queryForObject(sql, new BeanPropertyRowMapper<Service>(Service.class), STATUS.ACTIVE.ID, id);
+	}
 }
  class ServiceRowMapper implements ResultSetExtractor<List<ServiceCategory>> {
 	

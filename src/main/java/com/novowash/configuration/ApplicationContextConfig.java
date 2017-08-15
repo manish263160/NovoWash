@@ -122,14 +122,17 @@ public class ApplicationContextConfig extends WebMvcConfigurerAdapter{
 	      mailSender.setPort((Integer.parseInt(env.getProperty("mail.port"))));
 	      mailSender.setUsername(env.getProperty("mail.username"));
 	      mailSender.setPassword(env.getProperty("mail.password"));
-	       
-	      Properties javaMailProperties = new Properties();
+	      
+	      mailSender.setJavaMailProperties(getMailProperties());
+	      return mailSender;
+	  }
+	  
+	  private Properties getMailProperties() {
+		  Properties javaMailProperties = new Properties();
 	      javaMailProperties.put("mail.smtp.starttls.enable", "true");
 	      javaMailProperties.put("mail.smtp.auth", "true");
 	      javaMailProperties.put("mail.transport.protocol", "smtp");
-	      javaMailProperties.put("mail.debug", "true");//Prints out everything on screen
-	       
-	      mailSender.setJavaMailProperties(javaMailProperties);
-	      return mailSender;
+	      javaMailProperties.put("mail.debug", "false");
+	      return javaMailProperties;
 	  }
 }

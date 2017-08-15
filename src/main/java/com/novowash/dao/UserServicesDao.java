@@ -20,5 +20,7 @@ public interface UserServicesDao {
 	public List<ServiceCost> getServicesCostById(long serviceId);
 	
 	public void bookOrEnquireService(ServiceEnquire enquire);
+	
+	public Service getServiceById(long id);
 
 }
