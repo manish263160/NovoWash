@@ -7,6 +7,7 @@ public class ServiceCategory extends BaseDto {
 	private String catName;
 	private String catDesc;
 	private String imgageUrl;
+	private long catType; // 1 for booking type, 2 for enquiry
 	private int status;
 	private List<Service> services;
 	
@@ -81,6 +82,12 @@ public class ServiceCategory extends BaseDto {
 	 */
 	public void setServices(List<Service> services) {
 		this.services = services;
+	}
+	public long getCatType() {
+		return catType;
+	}
+	public void setCatType(long catType) {
+		this.catType = catType;
 	}
 	
 }

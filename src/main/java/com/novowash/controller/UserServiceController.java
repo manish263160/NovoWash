@@ -33,7 +33,7 @@ public class UserServiceController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/get")
-	public ResponseObject getAllServices() {
+	public ResponseObject getAllCategory() {
 		return GenUtilities.getSuccessResponseObject(services.getAllServices(), RESPONSE_CODES.SUCCESS.getDescription(),
 				RESPONSE_CODES.SUCCESS.getCode());
 	}
