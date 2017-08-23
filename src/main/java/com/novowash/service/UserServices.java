@@ -54,7 +54,7 @@ public class UserServices {
 	public void bookOrEnquireService(ServiceEnquire enquire) {
 		servicesDao.bookOrEnquireService(enquire);
 		if (enquire.getId() > 0) {
-			com.novowash.model.Service service = servicesDao.getServiceById(enquire.getId());
+			com.novowash.model.Service service = servicesDao.getServiceById(enquire.getServiceId());
 			if (null != service) {
 				Map<String, Object> model = new HashMap<String, Object>();
 				model.put("serviceName", service.getServiceName());
