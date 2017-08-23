@@ -130,7 +130,7 @@ public class UserServicesDaoImpl extends NovoJdbcTemplate implements UserService
 			category.setId(rs.getLong("id"));
 			category.setCatName(rs.getString("cat_name"));
 			category.setCatDesc(rs.getString("cat_desc"));
-			category.setImgageUrl(rs.getString("cat_image_url"));
+			category.setImageUrl(rs.getString("cat_image_url"));
 			category.setStatus(STATUS.ACTIVE.ID);
 			categoryMap.put(rs.getLong("id"), category);
 		}

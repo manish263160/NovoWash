@@ -6,7 +6,7 @@ public class ServiceCategory extends BaseDto {
 	private long id;
 	private String catName;
 	private String catDesc;
-	private String imgageUrl;
+	private String imageUrl;
 	private long catType; // 1 for booking type, 2 for enquiry
 	private int status;
 	private List<Service> services;
@@ -47,17 +47,18 @@ public class ServiceCategory extends BaseDto {
 	public void setCatDesc(String catDesc) {
 		this.catDesc = catDesc;
 	}
+	
 	/**
-	 * @return the imgageUrl
+	 * @return the imageUrl
 	 */
-	public String getImgageUrl() {
-		return imgageUrl;
+	public String getImageUrl() {
+		return imageUrl;
 	}
 	/**
-	 * @param imgageUrl the imgageUrl to set
+	 * @param imageUrl the imageUrl to set
 	 */
-	public void setImgageUrl(String imgageUrl) {
-		this.imgageUrl = imgageUrl;
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 	/**
 	 * @return the status
