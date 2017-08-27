@@ -5,7 +5,7 @@ import java.util.Date;
  * 
  */
 public abstract class BaseDto {
-
+	
 	private Date createdOn;
 	private Date modifiedOn;
 	private String createdBy;
