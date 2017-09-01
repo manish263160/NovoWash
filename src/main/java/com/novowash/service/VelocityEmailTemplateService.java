@@ -47,7 +47,7 @@ public class VelocityEmailTemplateService {
 			}
 		}
 		String text = stringWriter.toString();
-		logger.info("VelocityEmailTemplateService : getContentFromTemplate Email Content "+text);
+		logger.info("VelocityEmailTemplateService : getContentFromTemplate Email Content ");
 		return text;
 	}
 

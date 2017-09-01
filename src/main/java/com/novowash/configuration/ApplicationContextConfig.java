@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -135,4 +136,9 @@ public class ApplicationContextConfig extends WebMvcConfigurerAdapter{
 	      javaMailProperties.put("mail.debug", "false");
 	      return javaMailProperties;
 	  }
+	  
+	  @Bean
+		public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
+			return new PropertySourcesPlaceholderConfigurer();
+		}
 }
