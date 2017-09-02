@@ -73,9 +73,15 @@ public class UserServices {
 		String sender="NOVOWS";
 		if (enquire.getId() > 0) {
 			
-			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
-			Date curdate=new Date();
-			String serviceDat = sdf.format(enquire.getServiceDate());
+			
+			String serviceDat="";
+			try {
+				SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+				Date curdate=new Date();
+				serviceDat = sdf.format(enquire.getServiceDate());
+			} catch (Exception e1) {
+				logger.info("exception on msg making ="+e1);
+			}
 			
 			com.novowash.model.Service service = servicesDao.getServiceById(enquire.getServiceId());
 			String sms="Thanks you for connecting with NovoWash. You have requested for "+service.getServiceName()+" on "
