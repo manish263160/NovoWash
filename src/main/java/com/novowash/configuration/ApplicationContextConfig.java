@@ -3,6 +3,8 @@ package com.novowash.configuration;
 import java.io.IOException;
 import java.util.Properties;
 
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
@@ -128,12 +130,30 @@ public class ApplicationContextConfig extends WebMvcConfigurerAdapter{
 	      return mailSender;
 	  }
 	  
+	  @Bean 
+	  public Session getSessionObject() {
+		  Session sessionobj = Session.getInstance(getMailProperties(),
+			         new javax.mail.Authenticator() {
+			            protected PasswordAuthentication getPasswordAuthentication() {
+			               return new PasswordAuthentication(env.getProperty("mail.username"), env.getProperty("mail.password"));
+				   }
+			         });
+		  return sessionobj;
+	  }
+	  
 	  private Properties getMailProperties() {
 		  Properties javaMailProperties = new Properties();
-	      javaMailProperties.put("mail.smtp.starttls.enable", "true");
+	      /*javaMailProperties.put("mail.smtp.starttls.enable", "true");
 	      javaMailProperties.put("mail.smtp.auth", "true");
 	      javaMailProperties.put("mail.transport.protocol", "smtp");
+	      javaMailProperties.put("mail.debug", "true");*/
+	      
+	      javaMailProperties.put("mail.smtp.auth", "true");
+	      javaMailProperties.put("mail.smtp.starttls.enable", "true");
+	      javaMailProperties.put("mail.smtp.host", env.getProperty("mail.host"));
+	      javaMailProperties.put("mail.smtp.port", Integer.parseInt(env.getProperty("mail.port")));
 	      javaMailProperties.put("mail.debug", "false");
+	      
 	      return javaMailProperties;
 	  }
 	  
