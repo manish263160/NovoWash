@@ -98,7 +98,7 @@
 
                                                                                         Dear Sir,
                                                                                         <br>
-                                                                                        <br> We thank you for booking <b>${serviceName}</b> service with Novowash. Your booking has been confirmed and our team would be present at ${bookDate} at your registered address. As a part of standard procedure, you would receive a pre-service call one hour before service. Please feel free to contact us on <a href="tel:+91%2095998%2068771" value="+919599868771" target="_blank">+91-9599868771</a> or write to us on <a href="mailto:info@novowash.com" target="_blank">info@novowash.com</a> for any query.
+                                                                                        <br> We thank you for booking <b>${serviceName}</b> service with Novowash. Your booking has been confirmed and our team would be present ${bookDate} at your registered address. As a part of standard procedure, you would receive a pre-service call one hour before service. Please feel free to contact us on <a href="tel:+91%2095998%2068771" value="+919599868771" target="_blank">+91-9599868771</a> or write to us on <a href="mailto:info@novowash.com" target="_blank">info@novowash.com</a> for any query.
                                                                                         <br>
                                                                                         <br> Happy to serve!
                                                                                         <br>

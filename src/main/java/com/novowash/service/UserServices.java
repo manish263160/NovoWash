@@ -129,8 +129,12 @@ public class UserServices {
 				
 				Map<String, Object> model = new HashMap<String, Object>();
 				model.put("serviceName", service.getServiceName());
-				model.put("bookDate", enquire.getServiceDate());
-
+				if(enquire.getServiceDate() != null) {
+				model.put("bookDate","at "+enquire.getServiceDate());
+				}
+				else {
+					model.put("bookDate","");
+				}
 				String emailMessageBody = velocityService.geContentFromTemplate(model, "email_Templates/bookService.vm");
 				Mail mail = new Mail();
 				mail.setMailTo(enquire.getEmail());
