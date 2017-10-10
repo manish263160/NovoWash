@@ -20,6 +20,7 @@ public class ServiceEnquire extends BaseDto {
 	private String email;
 	private Date serviceDate;
 	private int status;
+	private int catId;
 	/**
 	 * @return the id
 	 */
@@ -152,5 +153,12 @@ public class ServiceEnquire extends BaseDto {
 	public void setStatus(int status) {
 		this.status = status;
 	}
+	public int getCatId() {
+		return catId;
+	}
+	public void setCatId(int catId) {
+		this.catId = catId;
+	}
+	
 	
 }

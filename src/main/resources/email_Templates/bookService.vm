@@ -56,7 +56,7 @@
                                                                             <tbody>
                                                                                 <tr>
                                                                                     <td style="padding:0px 18px 9px;color:rgb(128,128,128);font-family:Helvetica;font-size:16px;line-height:150%;text-align:left" valign="top">
-                                                                                        <div style="text-align:center"><span style="color:rgb(0,0,0)"><b>Booking Confirmation</b></span></div>
+                                                                                        <div style="text-align:center"><span style="color:rgb(0,0,0)"><b>${heading} Confirmation</b></span></div>
                                                                                     </td>
                                                                                 </tr>
                                                                             </tbody>
@@ -98,7 +98,7 @@
 
                                                                                         Dear Sir,
                                                                                         <br>
-                                                                                        <br> We thank you for booking <b>${serviceName}</b> service with Novowash. Your booking has been confirmed and our team would be present ${bookDate} at your registered address. As a part of standard procedure, you would receive a pre-service call one hour before service. Please feel free to contact us on <a href="tel:+91%2095998%2068771" value="+919599868771" target="_blank">+91-9599868771</a> or write to us on <a href="mailto:info@novowash.com" target="_blank">info@novowash.com</a> for any query.
+                                                                                        <br> We thank you for ${innerHeading} <b>${serviceName}</b> service with Novowash. Your ${heading} has been confirmed and our team would be present ${bookDate} at your registered address. As a part of standard procedure, you would receive a pre-service call one hour before service. Please feel free to contact us on <a href="tel:011-45073279" value="011-45073279" target="_blank">011-45073279 </a> or write to us on <a href="mailto:info@novowash.com" target="_blank">info@novowash.com</a> for any query.
                                                                                         <br>
                                                                                         <br> Happy to serve!
                                                                                         <br>

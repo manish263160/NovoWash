@@ -84,8 +84,19 @@ public class UserServices {
 			}
 			
 			com.novowash.model.Service service = servicesDao.getServiceById(enquire.getServiceId());
-			String sms="Thanks you for connecting with NovoWash. You have requested for "+service.getServiceName()+" on "
-					+serviceDat+".";
+			String serviceHeading =null;
+			String insideHeading =null;
+			int catId=enquire.getCatId();
+			
+			if(catId ==1 || catId == 5) {
+				serviceHeading = "Booking";
+				insideHeading = "booking";
+			}else {
+				serviceHeading =  "Request";
+				insideHeading = "requesting";
+			}			
+			String sms="Thank you for "+insideHeading+" a service with Novowash. Your "+serviceHeading+" for "+service.getServiceName()+"  service is confirmed at "
+					+serviceDat+" time and our team will get back to you shortly. Kindly call on 011-45073279 for any queries. ";
 					
 			if (null != service) {
 				
@@ -128,6 +139,15 @@ public class UserServices {
 				}
 				
 				Map<String, Object> model = new HashMap<String, Object>();
+				logger.info("catId=="+catId);
+				if(catId ==1 || catId == 5) {
+					model.put("heading", "Booking");
+					model.put("innerHeading", "booking");
+				}else {
+					model.put("heading", "Request");
+					model.put("innerHeading", "requesting");
+				}
+				
 				model.put("serviceName", service.getServiceName());
 				if(enquire.getServiceDate() != null) {
 				model.put("bookDate","at "+enquire.getServiceDate());
@@ -138,7 +158,7 @@ public class UserServices {
 				String emailMessageBody = velocityService.geContentFromTemplate(model, "email_Templates/bookService.vm");
 				Mail mail = new Mail();
 				mail.setMailTo(enquire.getEmail());
-				mail.setMailSubject("Booking Confirmation");
+				mail.setMailSubject(serviceHeading+" Confirmation");
 				mail.setMailContent(emailMessageBody);
 				mail.setContentType("text/html");
 				mailerService.sendEmail(mail);
